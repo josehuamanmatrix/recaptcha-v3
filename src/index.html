@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>reCaptcha V3</title>
+  </head>
+  <body>
+    <div id="container" class="container">
+      <h1>reCAPTCHA V3</h1>
+
+      <form id="recaptcha-form" type="submit">
+        <input id="recaptcha-input" type="submit" value="Generate token" />
+      </form>
+
+      <div class="clipboard-wrapper">
+        <i
+          id="clipboard-icon"
+          class="fa-regular fa-copy clipboard-icon hide"
+        ></i>
+        <code id="recaptcha-token" class="quote"></code>
+      </div>
+    </div>
+
+    <script type="module" src="./scripts/main.ts"></script>
+    <script src="https://www.google.com/recaptcha/api.js?render=6LfMEDQmAAAAAFX0WWF_pIcYQoyetI-p_3wwJUbm"></script>
+    <script>
+      window.addEventListener("load", () => {
+        const recaptchaForm = document.getElementById("recaptcha-form");
+        if (recaptchaForm === null) {
+          return;
+        }
+        recaptchaForm.addEventListener("submit", (event) => {
+          event.stopPropagation();
+          event.preventDefault(); // Prevent the default action of the form
+
+          grecaptcha.ready(() => {
+            grecaptcha
+              .execute("6LfMEDQmAAAAAFX0WWF_pIcYQoyetI-p_3wwJUbm", {
+                action: "contact",
+              }) // Execute the recaptcha
+              .then((token) => {
+                console.log("Token", token);
+
+                const copyIcon = document.getElementById("clipboard-icon");
+                copyIcon.classList.remove("hide");
+
+                const recaptchaToken =
+                  document.getElementById("recaptcha-token");
+                recaptchaToken.textContent = token;
+              });
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

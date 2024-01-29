@@ -1,0 +1,65 @@
+@import "../../node_modules/@fortawesome/fontawesome-free/css/all.min.css";
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+
+  color-scheme: light dark;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body,
+div,
+html {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+}
+
+.quote {
+  word-break: break-all;
+}
+
+.container {
+  margin: 0% 10%;
+}
+
+.clipboard-wrapper {
+  margin: 20px 0px;
+  padding: 0.5em 1em;
+  position: relative;
+}
+
+.clipboard-icon {
+  position: absolute;
+  bottom: 0px;
+  right: 20px;
+
+  cursor: pointer;
+}
+
+.snack {
+  background-color: white;
+  color: black;
+  border-radius: 10px;
+  padding: 0.5em 1em;
+  width: fit-content;
+
+  opacity: 0;
+  transition: all 1s ease-in-out;
+}
+
+.snack-show {
+  opacity: 1;
+}
+
+.not-transition * {
+  transition: none !important;
+}
+
+.hide {
+  display: none;
+}
